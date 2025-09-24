@@ -13,5 +13,5 @@ RUN wget -q https://github.com/grammarbot/grammarbot/releases/download/v0.9.7/gr
 
 WORKDIR /opt/grammarbot-0.9.7
 
-# Railway will inject $PORT dynamically
+# Railway dynamically injects $PORT
 CMD sh -c "java $JAVA_OPTS -cp grammarbot.jar org.grammarbot.GrammarBot --port $PORT"
