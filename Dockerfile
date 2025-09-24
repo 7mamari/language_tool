@@ -1,6 +1,7 @@
 FROM openjdk:17-jdk-slim
 
 ENV LT_VERSION=6.5
+ENV JAVA_OPTS="-Xms128m -Xmx448m"
 
 RUN apt-get update && apt-get install -y wget unzip \
     && wget https://languagetool.org/download/LanguageTool-${LT_VERSION}.zip \
@@ -9,7 +10,5 @@ RUN apt-get update && apt-get install -y wget unzip \
 
 WORKDIR /opt/LanguageTool-${LT_VERSION}
 
-EXPOSE 8010
-
-CMD ["java", "-cp", "languagetool-server.jar", "org.languagetool.server.HTTPServer", \
-     "--port", "8010", "--public"]
+# Railway will inject its own $PORT
+CMD sh -c "java $JAVA_OPTS -cp languagetool-server.jar org.languagetool.server.HTTPServer --port $PORT --public"
