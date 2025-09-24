@@ -10,4 +10,5 @@ RUN apt-get update && apt-get install -y wget unzip \
 
 WORKDIR /opt/grammarbot-${GB_VERSION}
 
+# Railway provides $PORT automatically
 CMD sh -c "java $JAVA_OPTS -cp grammarbot.jar org.grammarbot.GrammarBot --port $PORT"
