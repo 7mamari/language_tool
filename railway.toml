@@ -2,4 +2,4 @@
 builder = "dockerfile"
 
 [deploy]
-startCommand = "java -cp languagetool-server.jar org.languagetool.server.HTTPServer --port $PORT --public"
+startCommand = "java -Xms128m -Xmx448m -cp grammarbot.jar org.grammarbot.GrammarBot --port $PORT"
